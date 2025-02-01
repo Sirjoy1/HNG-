@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            display: block;
+            border: 3px solid #3498db;
+        }
+
+        .name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            color: #3498db;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .bio {
+            text-align: center;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            color: #555;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #2980b9;
+        }
+
+        .time {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .profile-card {
+                padding: 1.5rem;
+            }
+
+            .profile-picture {
+                width: 120px;
+                height: 120px;
+            }
+
+            .name {
+                font-size: 1.3rem;
+            }
+
+            .job-title {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <img 
+            data-testid="profilePicture"
+            class="profile-picture" 
+            src="/api/placeholder/150/150"
+            alt="Profile Picture"
+        >
+        
+        <h1 data-testid="fullName" class="name">John Doe</h1>
+        
+        <h2 data-testid="jobTitle" class="job-title">Frontend Developer</h2>
+        
+        <p data-testid="shortBio" class="bio">
+            Passionate frontend developer with a keen eye for design and user experience. 
+            I love creating responsive, accessible web applications that make a difference. 
+            Currently focused on React and modern JavaScript frameworks while exploring new technologies.
+        </p>
+        
+        <div class="info-item">
+            <span data-testid="currentLocation">📍 New York, United States</span>
+        </div>
+        
+        <div class="info-item">
+            <span data-testid="emailAddress">📧 john.doe@example.com</span>
+        </div>
+        
+        <div data-testid="socialLinks" class="social-links">
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            <a href="https://twitter.com" target="_blank">Twitter</a>
+        </div>
+        
+        <div data-testid="currentTimeUTC" class="time" id="utcTime">
+            UTC Time: Loading...
+        </div>
+    </div>
+
+    <script>
+        function updateUTCTime() {
+            const timeElement = document.getElementById('utcTime');
+            const now = new Date();
+            const utcTimeString = now.toUTCString();
+            timeElement.textContent = `UTC Time: ${utcTimeString}`;
+        }
+
+        // Update time immediately and set up interval
+        updateUTCTime();
+        setInterval(updateUTCTime, 1000);
+    </script>
+</body>
+</html>
